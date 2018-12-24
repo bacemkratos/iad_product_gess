@@ -2,7 +2,7 @@ from builtins import print
 
 import  src.DataProvider
 
-from src.DataProvider import initData ,readData
+from src.DataProvider import initData ,readData ,saveData
 
 import src.KNNCore as knn
 import src.Models as models
@@ -13,5 +13,18 @@ smartphone = models.Product("Samsung s9","?","Samsung",{"ecran":"5.8", "os":" An
 #this is our initial data set
 datatrain = readData()
 
+print(len(datatrain))
 # we will print the result of  wahat type  is this object
-print(knn.knnModel(datatrain,smartphone,4))
+print("class =" +knn.knnModel(datatrain,smartphone,5).upper())
+smartphone.type=knn.knnModel(datatrain,smartphone,4).upper()
+
+if  not (smartphone in datatrain):
+    print("the product is  new going to add it to dataset? Y/N")
+    k = input()
+    if k.lower() == y :
+        datatrain.append(smartphone)
+        saveData(datatrain)
+    else:
+        print(" ok see ya!")
+
+print(" ok see ya!")
